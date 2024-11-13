@@ -75,12 +75,13 @@
         </div>
       </div>
     </div>
+
     <script>
       async function getMoodEntries(){
           return fetch("{% url 'main:show_json' %}").then((res) => res.json())
       }
-      async function refreshMoodEntries() {
-        
+
+    async function refreshMoodEntries() {
     document.getElementById("mood_entry_cards").innerHTML = "";
     document.getElementById("mood_entry_cards").className = "";
     const moodEntries = await getMoodEntries();
@@ -180,8 +181,7 @@ const modal = document.getElementById('crudModal');
       }, 150); 
   }
 
-  document.getElementById("cancelButton").addEventListener("click", hideModal);
-  document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+
   function addMoodEntry() {
     fetch("{% url 'main:add_mood_entry_ajax' %}", {
       method: "POST",
@@ -194,6 +194,9 @@ const modal = document.getElementById('crudModal');
 
     return false;
   }
+
+  document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+  document.getElementById("cancelButton").addEventListener("click", hideModal);
   document.getElementById("submitMoodEntry").onclick = addMoodEntry 
     </script>
 {% endblock content %}
